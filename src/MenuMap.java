@@ -71,7 +71,11 @@ public class MenuMap {
 		}
 		System.out.println("Total\t" + orderTotal);
 		double orderAverage = orderTotal / orderNames.size();
+		double orderMinDou = orderMin(orderPrice);
+		double orderMaxDou = orderMax(orderPrice);
 		System.out.println("The average price of the items in your order is $" + orderAverage);
+		System.out.println("The cheapest item you purchased was $" + orderMinDou);
+		System.out.println("The most expensive item you purchased was $" + orderMaxDou);
 		scnr.close();
 	}
 	
@@ -95,5 +99,24 @@ public class MenuMap {
 		{
             System.out.println(entry.getKey() +"\t" + entry.getValue()); 
 		}
+	}
+	
+	private static double orderMin (List<Double> orderPrice)
+	{
+		double min = Double.POSITIVE_INFINITY;
+		for (int i = 0; i < orderPrice.size(); i++)
+		{
+		min = Math.min(orderPrice.get(i), min);
+		}
+		return min;
+	}
+	private static double orderMax (List<Double> orderPrice)
+	{
+		double max = Double.NEGATIVE_INFINITY;
+		for (int i = 0; i < orderPrice.size(); i++)
+		{
+		max = Math.max(orderPrice.get(i), max);
+		}
+		return max;
 	}
 } 
